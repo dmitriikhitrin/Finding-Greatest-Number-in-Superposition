@@ -7,7 +7,7 @@ Because the columns of unitaries form the orthonormal set, it is impossible to f
 
 ## Examples
 
-See the attached Examples notebook to see such a transformation for 2-qubit case. According to our goal, mtrx should ideally perform following mappings: <br />
+See the attached Examples notebook to see such a transformation for a 2-qubit case. According to our goal, mtrx should ideally perform the following mappings: <br />
 
 $MTRX\frac{1}{\sqrt{2}}(\ket{00}+\ket{01}) \mapsto \ket{01}$ <br />
 $MTRX\frac{1}{\sqrt{2}}(\ket{00}+\ket{10}) \mapsto \ket{10}$ <br />
