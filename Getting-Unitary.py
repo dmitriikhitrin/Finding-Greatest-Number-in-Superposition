@@ -2,10 +2,10 @@ import math
 import numpy as np
 import itertools
 
-mtrx= np.random.rand(4,4)
-mtrx= np.add(mtrx,np.random.rand(4,4)*complex('j'))
+mtrx = np.random.rand(4,4)
+mtrx = np.add(mtrx,np.random.rand(4,4)*complex('j'))
 mtrx = np.array(mtrx,dtype=complex)
-mtrx=mtrx/np.linalg.norm(mtrx)
+mtrx = mtrx/np.linalg.norm(mtrx)
 
 stepcount = 50000
 blr = 0.05
@@ -15,17 +15,17 @@ def calc(mat,v):
     return np.dot(mat,v)
 
 def std(iv,ov):
-    mxu=0
+    mxu = 0
     eth = [0,0,0,0]
     for i in range(len(iv)):
         if iv[i] != 0:
-            mxu=i
-    eth[mxu]= 1
-    sqs=0
+            mxu = i
+    eth[mxu] = 1
+    sqs = 0
     for i in range(len(ov)):
         sqs += (abs(ov[i])-eth[i])**2
-    if max(ov)!= ov[mxu]:
-        sqs+=0.1
+    if max(ov) != ov[mxu]:
+        sqs += 0.1
     return sqs
 
 def dot(a,b):
@@ -35,10 +35,10 @@ def dot(a,b):
     return s
 
 def normality(mat):
-    af= 0
-    cf =0
+    af = 0
+    cf = 0
     for i in range(4):
-        af+=abs(np.sum(np.absolute(mat[i,:])**2)-1)
+        af += abs(np.sum(np.absolute(mat[i,:])**2)-1)
         af += abs(np.sum(np.absolute(mat[:,i]) ** 2) - 1)
     rpp = itertools.combinations([0, 1, 2, 3], 2)
     for i in rpp:
@@ -47,7 +47,7 @@ def normality(mat):
     return af + cf
 
 def normality2(mat):
-    b =np.dot(mtrx, np.conj(np.transpose(mtrx)))
+    b = np.dot(mtrx, np.conj(np.transpose(mtrx)))
     return np.sum(np.absolute(b-np.eye(4))**2)
 
 def loss(mat):
@@ -57,15 +57,16 @@ def loss(mat):
 
     for i in comb:
         perm = perm.union(itertools.permutations(i, 4))
-    loss=0
+    loss = 0
 
     for i in perm:
         if sum(i)!=1:
             i_v = normalize(i)
             loss += std(i_v,calc(mat,i_v))
     loss += normality(mat)
-    loss+=normality2(mat)*3
+    loss += normality2(mat)*3
     return loss
+
 def normalize(v):
     v_a = np.array(v,dtype=complex)
     s= 0
